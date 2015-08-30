@@ -1,7 +1,7 @@
 import tgl
 
 #Import commands
-from commands import *
+#from commands import *
 from commands import ping
 
 ping.ping()#debug
