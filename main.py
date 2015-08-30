@@ -24,10 +24,8 @@ def on_our_id(our_id):
 	
 def on_msg_receive(msg):
 	"This is called when we receive new tgl.Msg object (may be called before on_binlog_replay_end, than it is old msg)."
-	print "on_msg_receive" #debug
-	print allow_messages #debug
+	global bot_id
 	if allow_messages == True and msg.src.id != bot_id:
-		print msg.text #debug
 		if msg.text == None:
 			msg.text = 'none'
 		replyTo = '' #Work out where to send our reply
