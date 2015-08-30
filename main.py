@@ -81,11 +81,12 @@ def reload_module(replyTo, module):
 	
 def send_help(replyTo):
 	"Sends help message"
-	response = "Novaso Telegram Bot v1.0\n\nLoaded commands:"
+	response = "Novaso Telegram Bot v2.0\n\nLoaded commands:"
 	global module_list
-	for i in module_list:
-		print i
-		#response = response + "\n" + i.command_name + " - " + i.short_description
+	"""for i in module_list:
+		response = response + "\n %s - &s" % (i.command_name, i.short_description)"""
+	for i in globals():
+		response = response + "\n %s - &s" % (globals()[i].command_name, globals()[i].short_description)
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
 	
