@@ -53,7 +53,9 @@ def on_msg_receive(msg):
 				reload_module(replyTo, words[1])
 				return
 		for i in module_list:
+			print i #debug
 			if globals()[i].will_respond_to_msg(msg.text):
+				print "Will run command" #debug
 				globals()[i].run_command(replyTo, msg.text)
 
 				
