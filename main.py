@@ -83,10 +83,10 @@ def send_help(replyTo):
 	"Sends help message"
 	response = "Novaso Telegram Bot v2.0\n\nLoaded commands:"
 	global module_list
-	for i in range(0, len(module_list)):
+	for i in module_list:
 		print i
 		print module_list[i]
-		response = response + "\n %s - &s" % (module_list[i].command_name, module_list[i].short_description)
+		response = response + "\n %s - &s" % (globals()[i].command_name, globals()[i].short_description)
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
 	
