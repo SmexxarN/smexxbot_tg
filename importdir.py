@@ -20,7 +20,7 @@ def do(path, env):
     __do(path, env)
 	
 	
-def get_names(path)
+def get_names(path):
 	"""
 		Return a list of all modules -SmexxarN
 	"""
