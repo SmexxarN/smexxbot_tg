@@ -3,6 +3,7 @@ import tgl
 #Import commands
 from commands import *
 
+import ping
 ping.ping()#debug
 
 tgl.PEER_USER = 1
