@@ -1,8 +1,5 @@
 import tgl
 
-#Import commands
-from commands import *
-
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
 tgl.PEER_ENCR_CHAT = 4
@@ -74,7 +71,7 @@ tgl.set_on_chat_update(on_chat_update)
 	
 def reload_module(replyTo, module):
 	"Reloads module"
-	#reload(module_name
+	#reload(module_name)
 	
 def send_help(replyTo):
 	"Sends help message"
