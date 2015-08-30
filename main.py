@@ -25,7 +25,7 @@ def on_msg_receive(msg):
 	if allow_messages == True and msg.src.id != bot_id:
 		if msg.text == nil:
 			msg.text = 'none'
-		replyTo #Work out where to send our reply
+		replyTo = '' #Work out where to send our reply
 		if msg.dest.id == bot_id: #Private chats reply to the user
 			replyTo = msg.src
 		else: #Group chats reply to the group
