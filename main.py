@@ -1,5 +1,16 @@
 import tgl
 
+#Import commands
+import os
+for name in os.listdir("commands"):
+    if name.endswith(".py"):
+        #strip the extension
+        module = name[:-3]
+        # set the module name in the current global name space:
+        globals()[module] = __import__(os.path.join("commands", name)
+		
+ping.ping()
+
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
 tgl.PEER_ENCR_CHAT = 4
