@@ -82,12 +82,14 @@ def load_modules():
 	"Load all commands in the commands folder"
 	import os
 	import glob
-	modules = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
-	for f in modules:
+	module_list = []
+	module_paths = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
+	for f in module_path:
 		print os.path.basename(f)[:-3]
-		module = os.path.basename(f)[:-3]
-		import module
-	__all__ = [os.path.basename(f)[:-3] for f in modules]
+		module_list.append(os.path.basename(f)[:-3])
+	modules = map(__import__, module_list)
+	print modules
+	__all__ = [os.path.basename(f)[:-3] for f in module_paths]
 	print __all__
 	#from commands import *
 	
