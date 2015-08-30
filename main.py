@@ -85,7 +85,7 @@ def send_help(replyTo):
 	global module_list
 	for i in module_list:
 		response = response + "\n" + i.command_name + " - " + i.short_description
-	response = response .. '\n\n!help <command> to get help for that command'
+	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
 	
 def send_command_help(replyTo, command):
