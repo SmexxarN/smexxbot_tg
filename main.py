@@ -5,7 +5,6 @@ import importdir
 importdir.do("commands", globals())
 importdir.get_names("commands")
 module_list = importdir.module_list
-print module_list #debug
 
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
@@ -82,6 +81,12 @@ def reload_module(replyTo, module):
 	
 def send_help(replyTo):
 	"Sends help message"
+	response = "Novaso Telegram Bot v1.0\n\nLoaded commands:"
+	global module_list
+	for i in module_list:
+		response = response + "\n" + i.command_name + " - " + i.short_description
+	response = response .. '\n\n!help <command> to get help for that command'
+	replyTo.send_msg(response)
 	
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
