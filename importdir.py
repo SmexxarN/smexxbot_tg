@@ -6,6 +6,8 @@ import os
 import re
 import sys
 
+module_list = []
+
 #---------------------------------------------------------------------------------------------------
 # Interface
 #---------------------------------------------------------------------------------------------------
@@ -16,7 +18,15 @@ def do(path, env):
         importdir.do("example_dir", globals())
     """
     __do(path, env)
-
+	
+	
+def get_names(path)
+	"""
+		Return a list of all modules -SmexxarN
+	"""
+	global module_list
+	module_list = __get_module_names_in_dir(path)
+	
 
 #---------------------------------------------------------------------------------------------------
 # Implementation
