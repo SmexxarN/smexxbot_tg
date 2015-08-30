@@ -22,7 +22,9 @@ def on_our_id(our_id):
 	
 def on_msg_receive(msg):
 	"This is called when we receive new tgl.Msg object (may be called before on_binlog_replay_end, than it is old msg)."
+	print "on_msg_receive" #debug
 	if allow_messages == True and msg.src.id != bot_id:
+		print msg.text #debug
 		if msg.text == nil:
 			msg.text = 'none'
 		replyTo = '' #Work out where to send our reply
@@ -30,7 +32,7 @@ def on_msg_receive(msg):
 			replyTo = msg.src
 		else: #Group chats reply to the group
 			replyTo = msg.dest
-		#Test
+		print replyTo #debug
 		replyTo.send_msg("Test")
 		#Check if this message is calling a system command
 		words = []
