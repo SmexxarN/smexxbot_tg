@@ -43,10 +43,9 @@ def on_msg_receive(msg):
 		#Check if this message is calling a system command
 		words = msg.text.split()
 		if words[0].lower() == "!help": #Execute help command
-			if len(words) == 1:
+			if len(words) == 1: #If only one word aka '!help', send help command
 				send_help(replyTo)
-			else:
-				print "Initiate send_command_help"
+			else: #If several words, send specific help command
 				send_command_help(replyTo, words[1].lower())
 			return
 		if words[0].lower() == "!reload": #Execute reload command
@@ -54,8 +53,8 @@ def on_msg_receive(msg):
 				reload_module(replyTo, words[1])
 				return
 		for i in module_list:
-			if globals()[i].will_respond_to_msg(msg.text):
-				globals()[i].run_command(replyTo, msg.text)
+			if globals()[i].will_respond_to_msg(msg.text): #Check if module will respond to this msg
+				globals()[i].run_command(replyTo, msg.text) #Run the main command of that module
 
 				
 
@@ -80,8 +79,15 @@ tgl.set_on_user_update(on_user_update)
 tgl.set_on_chat_update(on_chat_update)
 	
 def reload_module(replyTo, module):
-	"Reloads module"
-	#reload(module_name)
+	"Reloads a module"
+	global module_list
+	for i in module_list:
+		if i == module:
+			reload(globals()[i])
+			replyTo.send_msg(i + " reloaded")
+			return
+	replyTo.send_msg("No command by that name")
+	
 	
 def send_help(replyTo):
 	"Sends help message"
@@ -94,19 +100,13 @@ def send_help(replyTo):
 
 def send_command_help(replyTo, command):
 	"Sends help message about a specific command"
-	print "send_command_help" #debug
 	global module_list
-	response = None
 	for i in module_list:
-		print i #debug
 		if i == command:
 			response = globals()[i].long_description
-	if response == None:
-		replyTo.send_msg("No command by that name")
-		return
-	replyTo.send_msg(response)
-	print replyTo #debug
-	print response #debug
+			replyTo.send_msg(response)
+			return
+	replyTo.send_msg("No command by that name")
 
 
 	
