@@ -1,4 +1,4 @@
 module.name = "Ping"
 
-def ping()
+def ping():
 	print "Pong"
