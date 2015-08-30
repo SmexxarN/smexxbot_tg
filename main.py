@@ -98,7 +98,7 @@ def send_command_help(replyTo, command):
 	for i in module_list:
 		if i == command:
 			response = globals()[i].long_description
-	if response == None
+	if response == None:
 		replyTo.send_msg("No command by that name")
 		return
 	replyTo.send_msg(response)
