@@ -28,7 +28,7 @@ def on_msg_receive(msg):
 	print allow_messages #debug
 	if allow_messages == True and msg.src.id != bot_id:
 		print msg.text #debug
-		if msg.text == nil:
+		if msg.text == None:
 			msg.text = 'none'
 		replyTo = '' #Work out where to send our reply
 		if msg.dest.id == bot_id: #Private chats reply to the user
