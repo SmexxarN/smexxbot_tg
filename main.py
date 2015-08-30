@@ -33,7 +33,7 @@ def on_msg_receive(msg):
 	global bot_id
 	if allow_messages == True and msg.src.id != bot_id:
 		if msg.text == None:
-			msg.text = 'none'
+			return
 		replyTo = '' #Work out where to send our reply
 		if msg.dest.id == bot_id: #Private chats reply to the user
 			replyTo = msg.src
@@ -86,7 +86,7 @@ def send_help(replyTo):
 	"""for i in module_list:
 		response = response + "\n %s - &s" % (i.command_name, i.short_description)"""
 	for i in globals():
-		response = response + "\n %s - &s" % (globals()[i].command_name, globals()[i].short_description)
+		response = response + "\n %s - %s" % (globals()[i].command_name, globals()[i].short_description)
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
 	
