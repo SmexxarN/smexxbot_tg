@@ -87,6 +87,8 @@ def send_help(replyTo):
 		response = response + "\n" + globals()[i].command_name + " - " + globals()[i].short_description
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
+	print response
+	print replyTo
 	
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
