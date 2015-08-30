@@ -5,6 +5,7 @@ import importdir
 importdir.do("commands", globals())
 importdir.get_names("commands")
 module_list = importdir.module_list
+print module_list #debug
 
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
