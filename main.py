@@ -80,18 +80,8 @@ def send_command_help(replyTo, command):
 	
 def load_modules():
 	"Load all commands in the commands folder"
-	import os
-	import glob
-	module_list = []
-	module_path = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
-	for f in module_path:
-		print os.path.basename(f)[:-3]
-		module_list.append(os.path.basename(f)[:-3])
-	modules = map(__import__, module_list)
-	print modules
-	__all__ = [os.path.basename(f)[:-3] for f in module_paths]
-	print __all__
-	#from commands import *
+	from commands import *
+	print ping.module.name #debug
 	
 	
 def do_init():
