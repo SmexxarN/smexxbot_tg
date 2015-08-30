@@ -91,11 +91,16 @@ def send_help(replyTo):
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
 
-def send_command_help(replyTo):
+def send_command_help(replyTo, command):
 	"Sends help message about a specific command"
 	global module_list
+	response = ''
 	for i in module_list:
-		response = globals()[i].long_description
+		if i == command:
+			response = globals()[i].long_description
+	if response == ''
+		replyTo.send_msg("No command by that name")
+		return
 	replyTo.send_msg(response)
 
 def send_command_help(replyTo, command):
