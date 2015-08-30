@@ -66,8 +66,8 @@ def on_secret_chat_update(peer, what_changed):
 def reload_module(replyTo, module):
 	"Reloads module"
 	
-def send_help(replyTo)
+def send_help(replyTo):
 	"Sends help message"
 	
-def send_command_help(replyTo, command)
+def send_command_help(replyTo, command):
 	"Send help message for a specific command"
