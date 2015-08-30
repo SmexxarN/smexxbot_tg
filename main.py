@@ -15,6 +15,7 @@ def on_get_difference_end():
 	"This is called after first get_difference call. So we received all updates after last client execute."
 	#Finished launching, allowing commands now
 	allow_messages = True
+	print allow_messages #debug
 	
 def on_our_id(our_id):
 	"Informs about id of currently logged in user."
