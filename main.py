@@ -3,15 +3,6 @@ bot_id = ""
 	
 import tgl
 
-tgl.set_on_binlog_replay_end(on_binlog_replay_end)
-tgl.set_on_get_difference_end(on_get_difference_end)
-tgl.set_on_our_id(on_our_id)
-tgl.set_on_msg_receive(on_msg_receive)
-tgl.set_on_secret_chat_update(on_secret_chat_update)
-tgl.set_on_user_update(on_user_update)
-tgl.set_on_chat_update(on_chat_update)
-
-
 def on_binlog_replay_end():
 	"This is called when replay of old events end. Any updates prior this call were already received by this client some time ago."
 	
@@ -71,3 +62,11 @@ def send_help(replyTo):
 	
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
+	
+tgl.set_on_binlog_replay_end(on_binlog_replay_end)
+tgl.set_on_get_difference_end(on_get_difference_end)
+tgl.set_on_our_id(on_our_id)
+tgl.set_on_msg_receive(on_msg_receive)
+tgl.set_on_secret_chat_update(on_secret_chat_update)
+tgl.set_on_user_update(on_user_update)
+tgl.set_on_chat_update(on_chat_update)
