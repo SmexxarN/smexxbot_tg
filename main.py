@@ -39,14 +39,15 @@ def on_msg_receive(msg):
 		words = []
 		for word in msg.text.split():
 			words[len(words)+1] = word
-		if words[0].lower() == "!help":
-			#Execute help command
-			#please finish
-		if words[0].lower() == "!reload":
-			#Execute reload command
+		if words[0].lower() == "!help": #Execute help command
+			if len(words) == 1:
+				send_help(replyTo)
+			else:
+				send_command_help(replyTo, words[1].lower())
+		if words[0].lower() == "!reload": #Execute reload command
 			if words[1]:
 				reload_module(replyTo, words[1])
-				#please finish
+
 				
 
 
@@ -64,3 +65,9 @@ def on_secret_chat_update(peer, what_changed):
 	
 def reload_module(replyTo, module):
 	"Reloads module"
+	
+def send_help(replyTo)
+	"Sends help message"
+	
+def send_command_help(replyTo, command)
+	"Send help message for a specific command"
