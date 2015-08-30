@@ -1,10 +1,7 @@
 import tgl
 
 #Import commands
-#from commands import *
-from commands import ping
-
-ping.ping()#debug
+from commands import *
 
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
