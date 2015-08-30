@@ -1,4 +1,4 @@
-module.name = "Ping"
+command_name = "Ping"
 
 def ping():
 	print "Pong"
