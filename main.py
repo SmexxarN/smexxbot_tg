@@ -2,8 +2,8 @@ import tgl
 
 #Import commands
 from commands import *
+from commands import ping
 
-import ping
 ping.ping()#debug
 
 tgl.PEER_USER = 1
@@ -77,6 +77,7 @@ tgl.set_on_chat_update(on_chat_update)
 	
 def reload_module(replyTo, module):
 	"Reloads module"
+	#reload(module_name
 	
 def send_help(replyTo):
 	"Sends help message"
