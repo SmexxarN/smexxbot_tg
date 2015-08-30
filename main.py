@@ -47,8 +47,7 @@ def on_msg_receive(msg):
 				send_help(replyTo)
 			else:
 				print "Initiate send_command_help"
-				command = words[1].lower()
-				send_command_help(replyTo, command)
+				send_command_help(replyTo, words[1].lower())
 			return
 		if words[0].lower() == "!reload": #Execute reload command
 			if words[1]:
@@ -108,10 +107,6 @@ def send_command_help(replyTo, command):
 	replyTo.send_msg(response)
 	print replyTo #debug
 	print response #debug
-
-def send_command_help(replyTo, command):
-	"Send help message for a specific command"
-
 
 
 	
