@@ -1,7 +1,12 @@
+import tgl
+
+tgl.PEER_USER = 1
+tgl.PEER_CHAT = 2
+tgl.PEER_ENCR_CHAT = 4
+
 allow_messages = False
 bot_id = ""
-	
-import tgl
+
 
 def on_binlog_replay_end():
 	"This is called when replay of old events end. Any updates prior this call were already received by this client some time ago."
@@ -23,9 +28,11 @@ def on_msg_receive(msg):
 			msg.text = 'none'
 		replyTo #Work out where to send our reply
 		if msg.dest.id == bot_id: #Private chats reply to the user
-			replyTo = msg.src.name
+			replyTo = msg.src
 		else: #Group chats reply to the group
-			replyTo = msg.dest.name
+			replyTo = msg.dest
+		#Test
+		replyTo.send_msg("Test")
 		#Check if this message is calling a system command
 		words = []
 		for word in msg.text.split():
