@@ -14,15 +14,16 @@ def on_binlog_replay_end():
 def on_get_difference_end():
 	"This is called after first get_difference call. So we received all updates after last client execute."
 	#Finished launching, allowing commands now
-	global allow_messages = True
+	allow_messages = True
 	
 def on_our_id(our_id):
 	"Informs about id of currently logged in user."
-	global bot_id = our_id
+	bot_id = our_id
 	
 def on_msg_receive(msg):
 	"This is called when we receive new tgl.Msg object (may be called before on_binlog_replay_end, than it is old msg)."
 	print "on_msg_receive" #debug
+	print allow_messages #debug
 	if allow_messages == True and msg.src.id != bot_id:
 		print msg.text #debug
 		if msg.text == nil:
