@@ -1,4 +1,4 @@
-allow_messages = false
+allow_messages = False
 bot_id = ""
 	
 import tgl
