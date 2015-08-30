@@ -1,5 +1,10 @@
 import tgl
 
+#Import commands
+from commands import *
+
+print ping.module.name #debug
+
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
 tgl.PEER_ENCR_CHAT = 4
@@ -77,18 +82,7 @@ def send_help(replyTo):
 	
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
-	
-def load_modules():
-	"Load all commands in the commands folder"
-	from commands import *
-	print ping.module.name #debug
-	
-	
-def do_init():
-	load_modules()
 
-	
-do_init()
 
 
 	
