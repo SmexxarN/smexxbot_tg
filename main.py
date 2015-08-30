@@ -61,6 +61,13 @@ def on_chat_update(peer, what_changed):
 def on_secret_chat_update(peer, what_changed):
 	"Updated info about secret chat. peer is a tgl.Peer object representing the secret chat, and what_changed is array of strings."
 
+tgl.set_on_binlog_replay_end(on_binlog_replay_end)
+tgl.set_on_get_difference_end(on_get_difference_end)
+tgl.set_on_our_id(on_our_id)
+tgl.set_on_msg_receive(on_msg_receive)
+tgl.set_on_secret_chat_update(on_secret_chat_update)
+tgl.set_on_user_update(on_user_update)
+tgl.set_on_chat_update(on_chat_update)
 	
 def reload_module(replyTo, module):
 	"Reloads module"
@@ -71,10 +78,16 @@ def send_help(replyTo):
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
 	
-tgl.set_on_binlog_replay_end(on_binlog_replay_end)
-tgl.set_on_get_difference_end(on_get_difference_end)
-tgl.set_on_our_id(on_our_id)
-tgl.set_on_msg_receive(on_msg_receive)
-tgl.set_on_secret_chat_update(on_secret_chat_update)
-tgl.set_on_user_update(on_user_update)
-tgl.set_on_chat_update(on_chat_update)
+def load_modules():
+    #Load all commands in the commands folder
+    f = open("filename", "r") #Open file in read-only 'r'
+
+
+def do_init():
+    load_modules()
+
+	
+do_init()
+
+
+	
