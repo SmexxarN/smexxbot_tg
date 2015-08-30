@@ -80,7 +80,7 @@ def send_command_help(replyTo, command):
 	
 def load_modules():
     #Load all commands in the commands folder
-    f = open("filename", "r") #Open file in read-only 'r'
+	
 
 
 def do_init():
