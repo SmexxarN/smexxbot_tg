@@ -1,7 +1,7 @@
 command_name = "Ping"
 short_description = "Returns pong"
 
-def will_respond_to_msg(text)
+def will_respond_to_msg(text):
 	words = text.split()
 	if words[0].lower() == "!ping":
 		return true
