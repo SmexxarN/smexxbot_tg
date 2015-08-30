@@ -79,12 +79,10 @@ def send_command_help(replyTo, command):
 	"Send help message for a specific command"
 	
 def load_modules():
-    #Load all commands in the commands folder
-	
-
+	"Load all commands in the commands folder"
 
 def do_init():
-    load_modules()
+	load_modules()
 
 	
 do_init()
