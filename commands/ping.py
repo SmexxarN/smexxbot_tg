@@ -4,9 +4,9 @@ short_description = "Returns pong"
 def will_respond_to_msg(text):
 	words = text.split()
 	if words[0].lower() == "!ping":
-		return true
+		return True
 	else:
-		return false
+		return False
 
 def run_command(replyTo, text):
 	"Returns pong"
