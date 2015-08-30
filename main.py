@@ -83,10 +83,12 @@ def load_modules():
 	import os
 	import glob
 	modules = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
-	print modules #debug
-	print os.path.dirname(__file__)+"/commands/*.py" #debug
-	__all__ = [ os.path.basename(f)[:-3] for f in modules]
-	from commands import *
+	for f in modules:
+		print os.path.basename(f)[:-3]
+		import os.path.basename(f)[:-3]
+	__all__ = [os.path.basename(f)[:-3] for f in modules]
+	print __all__
+	#from commands import *
 	
 	
 def do_init():
