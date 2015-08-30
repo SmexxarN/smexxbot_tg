@@ -44,7 +44,6 @@ def on_msg_receive(msg):
 		words = msg.text.split()
 		if words[0].lower() == "!help": #Execute help command
 			if len(words) == 1:
-				print replyTo #debug
 				send_help(replyTo)
 			else:
 				send_command_help(replyTo, words[1].lower())
@@ -86,8 +85,6 @@ def send_help(replyTo):
 		response = response + "\n" + globals()[i].command_name + " - " + globals()[i].short_description
 	response = response + '\n\n!help <command> to get help for that command'
 	replyTo.send_msg(response)
-	print response #debug
-	print replyTo #debug
 	
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
