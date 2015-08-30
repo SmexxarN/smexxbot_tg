@@ -16,7 +16,6 @@ def on_get_difference_end():
 	#Finished launching, allowing commands now
 	global allow_messages
 	allow_messages = True
-	print allow_messages #debug
 	
 def on_our_id(our_id):
 	"Informs about id of currently logged in user."
@@ -26,11 +25,6 @@ def on_our_id(our_id):
 def on_msg_receive(msg):
 	"This is called when we receive new tgl.Msg object (may be called before on_binlog_replay_end, than it is old msg)."
 	global bot_id
-	print msg.src #debug
-	print msg.src.id #debug
-	print bot_id #debug
-	print msg.dest #debug
-	print msg.dest.id #debug
 	if allow_messages == True and msg.src.id != bot_id:
 		if msg.text == None:
 			msg.text = 'none'
@@ -39,12 +33,11 @@ def on_msg_receive(msg):
 			replyTo = msg.src
 		else: #Group chats reply to the group
 			replyTo = msg.dest
-		print replyTo #debug
-		replyTo.send_msg("Test")
+		#replyTo.send_msg("text")
 		#Check if this message is calling a system command
 		words = []
 		for word in msg.text.split():
-			words[len(words)+1] = word
+			words.append(word)
 		if words[0].lower() == "!help": #Execute help command
 			if len(words) == 1:
 				send_help(replyTo)
