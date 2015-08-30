@@ -1,29 +1,32 @@
 allow_messages = false
 bot_id = ""
-
-def test():
-	print "test"
 	
 import tgl
 
+tgl.set_on_binlog_replay_end(on_binlog_replay_end)
+tgl.set_on_get_difference_end(on_get_difference_end)
+tgl.set_on_our_id(on_our_id)
+tgl.set_on_msg_receive(on_msg_receive)
+tgl.set_on_secret_chat_update(on_secret_chat_update)
+tgl.set_on_user_update(on_user_update)
+tgl.set_on_chat_update(on_chat_update)
 
-def tgl.on_binlog_replay_end():
+
+def on_binlog_replay_end()
 	"This is called when replay of old events end. Any updates prior this call were already received by this client some time ago."
-	return;
-
-def tgl.on_get_difference_end():
+	
+def on_get_difference_end():
 	"This is called after first get_difference call. So we received all updates after last client execute."
 	#Finished launching, allowing commands now
 	allow_messages = True
-	return;
 	
-def tgl.on_our_id(our_id):
+def on_our_id(our_id):
 	"Informs about id of currently logged in user."
 	bot_id = our_id
-	return;
 	
-def tgl.on_msg_receive(msg):
+def on_msg_receive(msg):
 	"This is called when we receive new tgl.Msg object (may be called before on_binlog_replay_end, than it is old msg)."
+	return #not finished
 	if allow_messages = True and msg.src != bot_id:
 		if msg.text == nil:
 			msg.text = 'none'
@@ -45,21 +48,19 @@ def tgl.on_msg_receive(msg):
 				reload_module(replyTo, words[1])
 				#please finish
 				
-	return;
 
-def tgl.on_user_update(peer, what_changed):
+
+def on_user_update(peer, what_changed):
 	"Updated info about user. peer is a tgl.Peer object representing the user, and what_changed is array of strings."
-	return;
 
-def tgl.on_chat_update(peer, what_changed):
+
+def on_chat_update(peer, what_changed):
 	"Updated info about chat. peer is a tgl.Peer object representing the chat, and what_changed is array of strings."
-	return;
 
-def tgl.on_secret_chat_update(peer, what_changed):
+
+def on_secret_chat_update(peer, what_changed):
 	"Updated info about secret chat. peer is a tgl.Peer object representing the secret chat, and what_changed is array of strings."
-	return;
+
 	
 def reload_module(replyTo, module):
-	return;
-	
-test()
+	"Reloads module"
