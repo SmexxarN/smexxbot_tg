@@ -1,13 +1,13 @@
-#import tgl
+import tgl
 
 #Import commands
-import os
+"""import os
 for name in os.listdir("commands"):
     if name.endswith(".py"):
         #strip the extension
         module = name[:-3]
         # set the module name in the current global name space:
-        globals()[module] = __import__(os.path.join("commands", name)
+        globals()[module] = __import__(os.path.join("commands", name)"""
 
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
