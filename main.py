@@ -83,7 +83,7 @@ def load_modules():
 	import os
 	import glob
 	module_list = []
-	module_paths = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
+	module_path = glob.glob(os.path.dirname(__file__)+"/commands/*.py")
 	for f in module_path:
 		print os.path.basename(f)[:-3]
 		module_list.append(os.path.basename(f)[:-3])
