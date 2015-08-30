@@ -12,7 +12,7 @@ tgl.set_on_user_update(on_user_update)
 tgl.set_on_chat_update(on_chat_update)
 
 
-def on_binlog_replay_end()
+def on_binlog_replay_end():
 	"This is called when replay of old events end. Any updates prior this call were already received by this client some time ago."
 	
 def on_get_difference_end():
