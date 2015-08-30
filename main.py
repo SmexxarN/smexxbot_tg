@@ -14,6 +14,7 @@ def on_binlog_replay_end():
 def on_get_difference_end():
 	"This is called after first get_difference call. So we received all updates after last client execute."
 	#Finished launching, allowing commands now
+	global allow_messages
 	allow_messages = True
 	print allow_messages #debug
 	
