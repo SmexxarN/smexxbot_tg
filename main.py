@@ -1,7 +1,10 @@
 allow_messages = false
 bot_id = ""
 
-import tgl
+#import tgl
+
+def test():
+	print "test"
 
 def tgl.on_binlog_replay_end():
 	"This is called when replay of old events end. Any updates prior this call were already received by this client some time ago."
@@ -57,3 +60,5 @@ def tgl.on_secret_chat_update(peer, what_changed):
 	
 def reload_module(replyTo, module):
 	return;
+	
+test()
