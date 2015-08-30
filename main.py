@@ -46,6 +46,7 @@ def on_msg_receive(msg):
 			if len(words) == 1:
 				send_help(replyTo)
 			else:
+				print "Initiate send_command_help"
 				send_command_help(replyTo, words[1].lower())
 			return
 		if words[0].lower() == "!reload": #Execute reload command
@@ -93,15 +94,19 @@ def send_help(replyTo):
 
 def send_command_help(replyTo, command):
 	"Sends help message about a specific command"
+	print "send_command_help" #debug
 	global module_list
 	response = None
 	for i in module_list:
+		print i #debug
 		if i == command:
 			response = globals()[i].long_description
 	if response == None:
 		replyTo.send_msg("No command by that name")
 		return
 	replyTo.send_msg(response)
+	print replyTo #debug
+	print response #debug
 
 def send_command_help(replyTo, command):
 	"Send help message for a specific command"
