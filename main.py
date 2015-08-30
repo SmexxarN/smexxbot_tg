@@ -47,9 +47,14 @@ def on_msg_receive(msg):
 				send_help(replyTo)
 			else:
 				send_command_help(replyTo, words[1].lower())
+			return
 		if words[0].lower() == "!reload": #Execute reload command
 			if words[1]:
 				reload_module(replyTo, words[1])
+				return
+		for i in module_list:
+			if globals()[i].will_respond_to_msg(msg.text):
+				globals()[i].run_command(replyTo, msg.text)
 
 				
 
