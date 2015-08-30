@@ -20,6 +20,7 @@ def on_get_difference_end():
 	
 def on_our_id(our_id):
 	"Informs about id of currently logged in user."
+	global bot_id
 	bot_id = our_id
 	
 def on_msg_receive(msg):
