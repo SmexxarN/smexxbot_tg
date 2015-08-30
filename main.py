@@ -9,7 +9,7 @@ for name in os.listdir("commands"):
         # set the module name in the current global name space:
         globals()[module] = __import__(os.path.join("commands", name)
 		
-print ping.module.name
+print globals()
 
 tgl.PEER_USER = 1
 tgl.PEER_CHAT = 2
