@@ -29,6 +29,9 @@ def run_command(replyTo, text):
 	successMsg = "error id=0 msg=ok"
 	clientList = ""
 	channelList = ""
+	class data:
+		username = "serveradmin" #Teamspeak username
+		password = "z5r0l0t7" #Teamspeak pasword
 	
 	while True:
 		response = server.recv()
@@ -36,7 +39,7 @@ def run_command(replyTo, text):
 
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
-			server.send("login " .. data.username .. " " .. data.password .. "\n")
+			server.send("login " + data.username + " " + data.password + "\n")
 		elseif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
 			server.send("use port=9987\n")
@@ -44,12 +47,12 @@ def run_command(replyTo, text):
 			currentState = QueryState.OnServer
 			server.send("clientlist -voice\n")
 		elseif currentState == QueryState.OnServer and response != successMsg:
-			clientList = clientList .. response
+			clientList = clientList + response
 		elseif currentState == QueryState.OnServer and response == successMsg:
 			currentState = QueryState.GotUsers
 			server.send("channellist\n")
 		elseif currentState == QueryState.GotUsers and response != successMsg:
-			channelList = channelList .. response
+			channelList = channelList + response
 		elseif currentState == QueryState.GotUsers and response == successMsg:
 			currentState = QueryState.GotChannels
 			server.send("logout\n")
@@ -87,7 +90,7 @@ def run_command(replyTo, text):
 	elseif len(users) == 1:
 		response = "There is 1 person on TeamSpeak:"
 	else:
-		response = "There are " .. len(users) .. " people on TeamSpeak:"
+		response = "There are " + len(users) + " people on TeamSpeak:"
 
 	for i = 1, len(channels):
 		if channels[i].total_clients != "0":
@@ -105,7 +108,7 @@ def run_command(replyTo, text):
 		if channels[i].total_clients == "1" and channels[i].cid == savedId:
 		elseif channels[i].total_clients != "0":
 			local channelname = string.gsub(channels[i].channel_name, "\\s", " ")
-			response = response .. "\n" .. channelname
+			response = response + "\n" + channelname
 			for j = 1, len(channels[i].users):
-				response = response .. "\n" .. "\t---" .. channels[i].users[j]
+				response = response + "\n" + "\t---" + channels[i].users[j]
 	send_msg(replyTo, response, ok_cb, False)
