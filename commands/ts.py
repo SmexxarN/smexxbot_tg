@@ -94,23 +94,23 @@ def run_command(replyTo, text):
 	else:
 		response = "There are " + len(users) + " people on TeamSpeak:"
 
-	for i = 1, len(channels):
+	for i in range(1, len(channels)):
 		if channels[i].total_clients != "0":
 			channelname = re.sub(channels[i].channel_name, "\\s", " ")
 			channels[i].users = {}
 	
-	for i = 1, len(users):
+	for i in range(1, len(users)):
 		nickname = re.sub(users[i].client_nickname, "\\s", " ")
-		for j = 1, len(channels):
+		for j in range(1, len(channels)):
 			if channels[j].cid == users[i].cid:
 				channels[j].users.append(nickname)
 
 	
-	for i = 1, len(channels):
+	for i in range(1, len(channels)):
 		if channels[i].total_clients == "1" and channels[i].cid == savedId:
 		elif channels[i].total_clients != "0":
 			local channelname = string.gsub(channels[i].channel_name, "\\s", " ")
 			response = response + "\n" + channelname
-			for j = 1, len(channels[i].users):
+			for j in range(1, len(channels[i].users)):
 				response = response + "\n" + "\t---" + channels[i].users[j]
 	send_msg(replyTo, response, ok_cb, False)
