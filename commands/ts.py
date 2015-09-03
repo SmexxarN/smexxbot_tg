@@ -110,7 +110,7 @@ def run_command(replyTo, text):
 		if channels[i].total_clients != "0":
 			if channels[i].cid == savedId:
 				return
-			local channelname = string.gsub(channels[i].channel_name, "\\s", " ")
+			channelname = string.gsub(channels[i].channel_name, "\\s", " ")
 			response = response + "\n" + channelname
 			for j in range(1, len(channels[i].users)):
 				response = response + "\n" + "\t---" + channels[i].users[j]
