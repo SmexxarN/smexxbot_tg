@@ -42,26 +42,26 @@ def run_command(replyTo, text):
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
 			server.send("login " + data.username + " " + data.password + "\n")
-		elseif currentState == QueryState.Init and response == successMsg:
+		elif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
 			server.send("use port=9987\n")
-		elseif currentState == QueryState.LoggedIn and response == successMsg:
+		elif currentState == QueryState.LoggedIn and response == successMsg:
 			currentState = QueryState.OnServer
 			server.send("clientlist -voice\n")
-		elseif currentState == QueryState.OnServer and response != successMsg:
+		elif currentState == QueryState.OnServer and response != successMsg:
 			clientList = clientList + response
-		elseif currentState == QueryState.OnServer and response == successMsg:
+		elif currentState == QueryState.OnServer and response == successMsg:
 			currentState = QueryState.GotUsers
 			server.send("channellist\n")
-		elseif currentState == QueryState.GotUsers and response != successMsg:
+		elif currentState == QueryState.GotUsers and response != successMsg:
 			channelList = channelList + response
-		elseif currentState == QueryState.GotUsers and response == successMsg:
+		elif currentState == QueryState.GotUsers and response == successMsg:
 			currentState = QueryState.GotChannels
 			server.send("logout\n")
-		elseif currentState == QueryState.GotChannels and response == successMsg:
+		elif currentState == QueryState.GotChannels and response == successMsg:
 			currentState = QueryState.LoggedOut
 			server.send("quit\n")
-		elseif currentState == QueryState.LoggedOut and response == successMsg:
+		elif currentState == QueryState.LoggedOut and response == successMsg:
 			currentState = QueryState.Off
 			server.close()
 			break
@@ -74,7 +74,7 @@ def run_command(replyTo, text):
 			newUser[k] = v
 		if newUser.client_typ == "0":
 			users.append(newUser)
-		elseif newUser.client_type == "1":
+		elif newUser.client_type == "1":
 			savedId = newUser.cid
 	
 	channels = {}
@@ -89,7 +89,7 @@ def run_command(replyTo, text):
 
 	if len(users) == 0:
 		response = "There is nobody on TeamSpeak."
-	elseif len(users) == 1:
+	elif len(users) == 1:
 		response = "There is 1 person on TeamSpeak:"
 	else:
 		response = "There are " + len(users) + " people on TeamSpeak:"
@@ -108,7 +108,7 @@ def run_command(replyTo, text):
 	
 	for i = 1, len(channels):
 		if channels[i].total_clients == "1" and channels[i].cid == savedId:
-		elseif channels[i].total_clients != "0":
+		elif channels[i].total_clients != "0":
 			local channelname = string.gsub(channels[i].channel_name, "\\s", " ")
 			response = response + "\n" + channelname
 			for j = 1, len(channels[i].users):
