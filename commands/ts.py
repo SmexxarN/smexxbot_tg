@@ -31,7 +31,8 @@ def run_command(replyTo, text):
 	channelList = ""
 	
 	while True:
-		response = server:receive("*l")
+		response = server.recv()
+		print response #debug
 
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
