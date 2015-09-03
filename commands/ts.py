@@ -3,6 +3,7 @@ short_description = "Who is on teamspeak?"
 long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of people on the teamspeak server"
 
 import socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
 	
 def will_respond_to_msg(text):
@@ -15,7 +16,7 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
-	server = socket.connect("localhost:10011")
+	server.connect("localhost", 10011)
 	class States:
 		Off = 0
 		Init = 1
