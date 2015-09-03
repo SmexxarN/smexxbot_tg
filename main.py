@@ -38,8 +38,7 @@ def on_msg_receive(msg):
 		if msg.dest.id == bot_id: #Private chats reply to the user
 			replyTo = msg.src
 		else: #Group chats reply to the group
-			replyTo = msg.dest
-		#replyTo.send_msg("text")		
+			replyTo = msg.dest		
 		#Check if this message is calling a system command
 		words = msg.text.split()
 		if words[0].lower() == "!help": #Execute help command

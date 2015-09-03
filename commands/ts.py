@@ -41,12 +41,12 @@ def run_command(replyTo, text):
 	elseif currentState == QueryState.LoggedIn and response == successMsg:
 		currentState = QueryState.OnServer
 		server:send('clientlist -voice\n')
-	elseif currentState == QueryState.OnServer and response ~= successMsg:
+	elseif currentState == QueryState.OnServer and response != successMsg:
 		clientList = clientList .. response
 	elseif currentState == QueryState.OnServer and response == successMsg:
 		currentState = QueryState.GotUsers
 		server:send('channellist\n')
-	elseif currentState == QueryState.GotUsers and response ~= successMsg:
+	elseif currentState == QueryState.GotUsers and response != successMsg:
 		channelList = channelList .. response
 	elseif currentState == QueryState.GotUsers and response == successMsg:
 		currentState = QueryState.GotChannels
@@ -60,3 +60,56 @@ def run_command(replyTo, text):
 		break
 		
 	users = {}
+	for user in string.gmatch(clientList, '[^|]+'):
+		newUser = {}
+
+		for k, v in string.gmatch(user, '([^%s]+)=([^%s]+)'):
+			print(k, v)
+			newUser[k] = v
+
+		if newUser.client_type == "0":
+			users.append(newUser)
+		elseif newUser.client_type == "1":
+			savedId = newUser.cid
+
+	
+	channels = {}
+	for channel in string.gmatch(channelList, '[^|]+'):
+		newChannel = {}
+
+		for k, v in string.gmatch(channel, '([^%s]+)=([^%s]+)'):
+			print(k, v)
+			newChannel[k] = v
+		channels.append(newChannel)
+
+	response = ''
+
+	if len(users) == 0:
+		response = 'There is nobody on TeamSpeak.'
+	elseif len(users) == 1:
+		response = 'There is 1 person on TeamSpeak:'
+	else:
+		response = 'There are ' .. len(users) .. ' people on TeamSpeak:'
+
+	
+	for i = 1, len(channels):
+		if channels[i].total_clients != '0':
+			local channelname = string.gsub(channels[i].channel_name, '\\s', ' ')
+			channels[i].users = {}
+
+	
+	for i = 1, len(users):
+		local nickname = string.gsub(users[i].client_nickname, '\\s', ' ')
+		for j = 1, len(channels):
+			if channels[j].cid == users[i].cid:
+				table.insert(channels[j].users, nickname)
+
+	
+	for i = 1, len(channels):
+		if channels[i].total_clients == '1' and channels[i].cid == savedId:
+		elseif channels[i].total_clients != '0':
+			local channelname = string.gsub(channels[i].channel_name, '\\s', ' ')
+			response = response .. '\n' .. channelname
+			for j = 1, len(channels[i].users):
+				response = response .. '\n' .. '\t---' .. channels[i].users[j]
+	send_msg(replyTo, response, ok_cb, False)
