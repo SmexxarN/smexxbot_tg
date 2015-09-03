@@ -16,7 +16,7 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
-	server.connect("localhost", 10011)
+	server.connect("localhost:10011")
 	class States:
 		Off = 0
 		Init = 1
@@ -32,6 +32,8 @@ def run_command(replyTo, text):
 	successMsg = "error id=0 msg=ok"
 	clientList = ""
 	channelList = ""
+	savedId = ""
+	
 	class data:
 		username = "serveradmin" #Teamspeak username
 		password = "z5r0l0t7" #Teamspeak pasword
