@@ -36,29 +36,29 @@ def run_command(replyTo, text):
 
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
-			server:send("login " .. data.username .. " " .. data.password .. "\n")
+			server.send("login " .. data.username .. " " .. data.password .. "\n")
 		elseif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
-			server:send("use port=9987\n")
+			server.send("use port=9987\n")
 		elseif currentState == QueryState.LoggedIn and response == successMsg:
 			currentState = QueryState.OnServer
-			server:send("clientlist -voice\n")
+			server.send("clientlist -voice\n")
 		elseif currentState == QueryState.OnServer and response != successMsg:
 			clientList = clientList .. response
 		elseif currentState == QueryState.OnServer and response == successMsg:
 			currentState = QueryState.GotUsers
-			server:send("channellist\n")
+			server.send("channellist\n")
 		elseif currentState == QueryState.GotUsers and response != successMsg:
 			channelList = channelList .. response
 		elseif currentState == QueryState.GotUsers and response == successMsg:
 			currentState = QueryState.GotChannels
-			server:send("logout\n")
+			server.send("logout\n")
 		elseif currentState == QueryState.GotChannels and response == successMsg:
 			currentState = QueryState.LoggedOut
-			server:send("quit\n")
+			server.send("quit\n")
 		elseif currentState == QueryState.LoggedOut and response == successMsg:
 			currentState = QueryState.Off
-			server:close()
+			server.close()
 			break
 		
 	users = {}
