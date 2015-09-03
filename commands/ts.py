@@ -15,7 +15,7 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
-	server = socket.connect("localhost", 10011)
+	server = socket.connect("localhost:10011")
 	class States:
 		Off = 0
 		Init = 1
