@@ -5,6 +5,11 @@ long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of pe
 import socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
+
+"""
+Add json decode to figure out the password in a seperate file
+Otherwise the password will end up on github
+"""
 	
 def will_respond_to_msg(text):
 	words = text.split()
@@ -36,7 +41,7 @@ def run_command(replyTo, text):
 	
 	class data:
 		username = "serveradmin" #Teamspeak username
-		password = "z5r0l0t7" #Teamspeak pasword
+		password = "" #Teamspeak pasword
 	
 	while True:
 		response = server.recv()
