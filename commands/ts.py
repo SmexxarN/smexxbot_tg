@@ -107,9 +107,9 @@ def run_command(replyTo, text):
 
 	
 	for i in range(1, len(channels)):
-		if channels[i].total_clients == "1" and channels[i].cid == savedId:
-		
-		elif channels[i].total_clients != "0":
+		if channels[i].total_clients != "0":
+			if channels[i].cid == savedId:
+				return
 			local channelname = string.gsub(channels[i].channel_name, "\\s", " ")
 			response = response + "\n" + channelname
 			for j in range(1, len(channels[i].users)):
