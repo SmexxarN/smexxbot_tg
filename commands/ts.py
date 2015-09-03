@@ -16,7 +16,7 @@ def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
 	server = socket.connect("localhost", 10011)
-	class QueryState:
+	class States:
 		Off = 0
 		Init = 1
 		LoggedIn = 2
@@ -24,6 +24,8 @@ def run_command(replyTo, text):
 		GotUsers = 4
 		GotChannels = 5
 		LoggedOut = 6
+	
+	QueryState = States()
 
 	currentState = QueryState.Off
 	successMsg = "error id=0 msg=ok"
