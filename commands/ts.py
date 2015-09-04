@@ -24,7 +24,7 @@ def run_command(replyTo, text):
 	
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
 	server.bind((HOST, PORT))
-	s.listen(1)
+	server.listen(1)
 	conn, addr = server.accept()
 	
 	class States:
