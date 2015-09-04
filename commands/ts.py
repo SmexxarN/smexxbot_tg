@@ -5,6 +5,7 @@ long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of pe
 import socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
+import json
 
 with open('config.json') as data_file:    
     data = json.load(data_file)
