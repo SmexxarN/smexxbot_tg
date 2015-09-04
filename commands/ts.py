@@ -20,7 +20,7 @@ def run_command(replyTo, text):
 		data = json.load(data_file)
 	
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
-	server.connect(("localhost", 10011))
+	server.connect(("127.0.0.1", 10011))
 	
 	class States:
 		Off = 0
