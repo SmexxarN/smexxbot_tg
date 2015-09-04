@@ -5,10 +5,11 @@ long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of pe
 import socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
-import json
 
-with open('config.json') as data_file:    
-    data = json.load(data_file)
+"""
+Add json decode to figure out the password in a seperate file
+Otherwise the password will end up on github
+"""
 	
 def will_respond_to_msg(text):
 	words = text.split()
