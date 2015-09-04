@@ -17,7 +17,7 @@ def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
 	with open('config.json') as data_file:    #Retrieve username and password
-    data = json.load(data_file)
+		data = json.load(data_file)
 	
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
 	server.connect(("localhost", 10011))
