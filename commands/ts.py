@@ -3,12 +3,8 @@ short_description = "Who is on teamspeak?"
 long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of people on the teamspeak server"
 
 import socket
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
 import json
-
-with open('config.json') as data_file:    
-    data = json.load(data_file)
 	
 def will_respond_to_msg(text):
 	words = text.split()
@@ -20,7 +16,12 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
+	with open('config.json') as data_file:    #Retrieve username and password
+    data = json.load(data_file)
+	
+	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
 	server.connect(("localhost", 10011))
+	
 	class States:
 		Off = 0
 		Init = 1
@@ -45,9 +46,6 @@ def run_command(replyTo, text):
 
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
-			global data
-			print data.username #debug
-			print data.password #debug
 			server.send("login " + data.username + " " + data.password + "\n")
 		elif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
