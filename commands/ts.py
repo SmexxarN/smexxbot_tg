@@ -46,6 +46,8 @@ def run_command(replyTo, text):
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
 			global data
+			print data.username #debug
+			print data.password #debug
 			server.send("login " + data.username + " " + data.password + "\n")
 		elif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
