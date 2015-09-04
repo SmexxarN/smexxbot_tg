@@ -17,7 +17,7 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text):
 	"Returns a list of people on the teamspeak server"
 	
-	with open('config.json') as data_file:	  #Retrieve username and password
+	with open('config.json') as data_file:    #Retrieve username and password
 		data = json.load(data_file)
 	
 	
@@ -30,21 +30,21 @@ def run_command(replyTo, text):
 	sock.connect(server_address)
 
 	 # Send data
-	message = "This is the message.	 It will be repeated."
-	print >>sys.stderr, 'sending "%s"' % message
-	sock.sendall(message)
+    message = 'This is the message.  It will be repeated.'
+    print >>sys.stderr, 'sending "%s"' % message
+    sock.sendall(message)
 
-	# Look for the response
-	amount_received = 0
-	amount_expected = len(message)
-	
-	while amount_received < amount_expected:
-		data = sock.recv(16)
-		amount_received += len(data)
-		print >>sys.stderr, 'received "%s"' % data
+    # Look for the response
+    amount_received = 0
+    amount_expected = len(message)
+    
+    while amount_received < amount_expected:
+        data = sock.recv(16)
+        amount_received += len(data)
+        print >>sys.stderr, 'received "%s"' % data
 
-	print >>sys.stderr, 'closing socket'
-	sock.close()
+    print >>sys.stderr, 'closing socket'
+    sock.close()
 	return #debug
 	
 	class States:
