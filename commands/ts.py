@@ -23,7 +23,9 @@ def run_command(replyTo, text):
 	PORT = 10011
 	
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
-	server.connect((HOST, PORT))
+	server.bind((HOST, PORT))
+	s.listen(1)
+	conn, addr = server.accept()
 	
 	class States:
 		Off = 0
