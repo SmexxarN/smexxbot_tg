@@ -6,10 +6,8 @@ import socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 import re
 
-"""
-Add json decode to figure out the password in a seperate file
-Otherwise the password will end up on github
-"""
+with open('config.json') as data_file:    
+    data = json.load(data_file)
 	
 def will_respond_to_msg(text):
 	words = text.split()
