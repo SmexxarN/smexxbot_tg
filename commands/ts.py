@@ -19,8 +19,11 @@ def run_command(replyTo, text):
 	with open('config.json') as data_file:    #Retrieve username and password
 		data = json.load(data_file)
 	
+	HOST = "127.0.0.1"
+	PORT = 10011
+	
 	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
-	server.connect(("127.0.0.1", 10011))
+	server.connect((HOST, PORT))
 	
 	class States:
 		Off = 0
