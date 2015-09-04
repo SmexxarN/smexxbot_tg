@@ -38,9 +38,6 @@ def run_command(replyTo, text):
 	channelList = ""
 	savedId = ""
 	
-	class data:
-		username = "serveradmin" #Teamspeak username
-		password = "" #Teamspeak pasword
 	
 	while True:
 		response = server.recv()
@@ -48,6 +45,7 @@ def run_command(replyTo, text):
 
 		if currentState == QueryState.Off and response == "TS3":
 			currentState = QueryState.Init
+			global data
 			server.send("login " + data.username + " " + data.password + "\n")
 		elif currentState == QueryState.Init and response == successMsg:
 			currentState = QueryState.LoggedIn
