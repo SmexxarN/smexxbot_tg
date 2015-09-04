@@ -47,6 +47,7 @@ def run_command(replyTo, text):
 	
 	while True:
 		response = server.recv()
+		response = conn.recv()
 		print response #debug
 
 		if currentState == QueryState.Off and response == "TS3":
