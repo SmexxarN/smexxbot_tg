@@ -3,7 +3,6 @@ short_description = "Who is on teamspeak?"
 long_description = "Teamspeak Command - v1.0 \nUsage: !ts \nReturns a list of people on the teamspeak server"
 
 import socket
-import sys
 import re
 import json
 	
@@ -20,32 +19,13 @@ def run_command(replyTo, text):
 	with open('config.json') as data_file:    #Retrieve username and password
 		data = json.load(data_file)
 	
+	HOST = "127.0.0.1"
+	PORT = 10011
 	
-	# Create a TCP/IP socket
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-	# Connect the socket to the port where the server is listening
-	server_address = ('localhost', 10011)
-	print >>sys.stderr, 'connecting to %s port %s' % server_address
-	sock.connect(server_address)
-
-	 # Send data
-    message = 'This is the message.  It will be repeated.'
-    print >>sys.stderr, 'sending "%s"' % message
-    sock.sendall(message)
-
-    # Look for the response
-    amount_received = 0
-    amount_expected = len(message)
-    
-    while amount_received < amount_expected:
-        data = sock.recv(16)
-        amount_received += len(data)
-        print >>sys.stderr, 'received "%s"' % data
-
-    print >>sys.stderr, 'closing socket'
-    sock.close()
-	return #debug
+	server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #Setup a new socket
+	server.bind((HOST, PORT))
+	server.listen(1)
+	conn, addr = server.accept()
 	
 	class States:
 		Off = 0
