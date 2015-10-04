@@ -159,7 +159,7 @@ def run_command(replyTo, text, src):
 		
 		#Check if sender is admin
 		if perm_check(string.lower(msg.src.username)):
-			replyTo.del_user("user#" .. id) #Kick
+			replyTo.del_user("user#" + id) #Kick
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
@@ -204,7 +204,7 @@ def run_command(replyTo, text, src):
 
 		#Check if sender is admin
 		if perm_check(string.lower(msg.from.username)):
-			replyTo.add_user("user#" .. id) #Invite
+			replyTo.add_user("user#" + id) #Invite
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 
