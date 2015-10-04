@@ -143,11 +143,7 @@ def run_command(replyTo, text):
 	global numberofvotes_no
 	global vote_running
 	
-	words = {}
-    for word in string.gmatch(msg.text, "%S+"):
-        words[len(words) + 1] = word;
-    
-	
+	words = text.split
 	
 	if words[2] == "kick": #If the !kick command is run
 		if words[3] == nil: #No user specified
