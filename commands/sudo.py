@@ -5,15 +5,15 @@ long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKick
 import time
 import threading
 
-numberofvotesyes = 0
-numberofvotesno = 0
+global numberofvotes_yes = 0
+global numberofvotes_no = 0
 chatinforesponse = ""
 replyTo2 = nil
 listofstarts = {}
 userinfostring = ""
 user = ""
 sendlist = false
-vote_running = 0
+global vote_running = 0
 
 
 #Userinfo2
@@ -79,7 +79,7 @@ def perm_check(username):
 			
 
 def vote_count(id, end):
-	send_msg(replyTo, "Current vote count:\nYes: " + global numberofvotesyes + "\nNo: " + global numberofvotesno, ok_cb, false)
+	send_msg(replyTo, "Current vote count:\nYes: " + numberofvotes_yes + "\nNo: " + numberofvotes_no, ok_cb, false)
 	if end == true:
 		if numberofvotes_yes >= 3:
 			chat_del_user(replyTo, "user#" + id, ok_cb, false)
@@ -164,14 +164,14 @@ def run_command(replyTo, text):
 			send_msg(replyTo, "Please specify a userid to invite", ok_cb, false)
 			return
 		elif words[3] == "yes":
-			if global vote_running = 1:
-				global numberofvotes_yes = global numberofvotes_yes + 1
+			if vote_running = 1:
+				global numberofvotes_yes = numberofvotes_yes + 1
 				vote_count(id)
 			else:
 				send_msg(replyTo, "The current vote has ended", ok_cb, false)
 		elif words[3] == "no":
-			if global vote_running = 1:
-				global numberofvotes_no = global numberofvotes_no + 1
+			if vote_running = 1:
+				global numberofvotes_no = numberofvotes_no + 1
 				vote_count(id)
 			else:
 				send_msg(replyTo, "The current vote has ended", ok_cb, false)
@@ -181,9 +181,10 @@ def run_command(replyTo, text):
 		#Run the actual command
 		t = Timer(180.0, vote_count)
 		t.start() #After 180 seconds, vote_count() will be executed
-		if global vote_running = 1:
+		if vote_running = 1:
 			send_msg(replyTo, "The current vote has not ended", ok_cb, false)
 			return
+		global vote_running = 1
 		global numberofvotes_yes = 1 #Reset votes
 		global numberofvotes_no = 0 #Reset votes
 		send_msg(replyTo, msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3], ok_cb, false)
