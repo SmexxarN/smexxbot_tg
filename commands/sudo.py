@@ -5,15 +5,15 @@ long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKick
 import time
 import threading
 
-global numberofvotes_yes = 0
-global numberofvotes_no = 0
+numberofvotes_yes = 0
+numberofvotes_no = 0
 chatinforesponse = ""
 replyTo2 = nil
 listofstarts = {}
 userinfostring = ""
 user = ""
 sendlist = false
-global vote_running = 0
+vote_running = 0
 
 
 #Userinfo2
@@ -79,12 +79,15 @@ def perm_check(username):
 			
 
 def vote_count(id, end):
+	global numberofvotes_yes
+	global numberofvotes_no
+	global vote_running
 	send_msg(replyTo, "Current vote count:\nYes: " + numberofvotes_yes + "\nNo: " + numberofvotes_no, ok_cb, false)
 	if end == true:
 		if numberofvotes_yes >= 3:
 			chat_del_user(replyTo, "user#" + id, ok_cb, false)
 			send_msg(replyTo, id + " was kicked", ok_cb, false)
-		global vote_running = 0
+		vote_running = 0
 
 
 
@@ -135,6 +138,10 @@ def run_command(replyTo, text):
 	first_name = ""
 	username = ""
 	
+	global numberofvotes_yes
+	global numberofvotes_no
+	global vote_running
+	
 	words = {}
     for word in string.gmatch(msg.text, "%S+"):
         words[len(words) + 1] = word;
@@ -165,13 +172,13 @@ def run_command(replyTo, text):
 			return
 		elif words[3] == "yes":
 			if vote_running = 1:
-				global numberofvotes_yes = numberofvotes_yes + 1
+				numberofvotes_yes = numberofvotes_yes + 1
 				vote_count(id)
 			else:
 				send_msg(replyTo, "The current vote has ended", ok_cb, false)
 		elif words[3] == "no":
 			if vote_running = 1:
-				global numberofvotes_no = numberofvotes_no + 1
+				numberofvotes_no = numberofvotes_no + 1
 				vote_count(id)
 			else:
 				send_msg(replyTo, "The current vote has ended", ok_cb, false)
@@ -184,9 +191,9 @@ def run_command(replyTo, text):
 		if vote_running = 1:
 			send_msg(replyTo, "The current vote has not ended", ok_cb, false)
 			return
-		global vote_running = 1
-		global numberofvotes_yes = 1 #Reset votes
-		global numberofvotes_no = 0 #Reset votes
+		vote_running = 1
+		numberofvotes_yes = 1 #Reset votes
+		numberofvotes_no = 0 #Reset votes
 		send_msg(replyTo, msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3], ok_cb, false)
 		
 		
