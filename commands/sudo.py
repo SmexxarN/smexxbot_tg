@@ -82,11 +82,11 @@ def vote_count(id, end):
 	global numberofvotes_yes
 	global numberofvotes_no
 	global vote_running
-	send_msg(replyTo, "Current vote count:\nYes: " + numberofvotes_yes + "\nNo: " + numberofvotes_no, ok_cb, false)
+	replyTo.send_msg("Current vote count:\nYes: " + numberofvotes_yes + "\nNo: " + numberofvotes_no)
 	if end == true:
 		if numberofvotes_yes >= 3:
-			chat_del_user(replyTo, "user#" + id, ok_cb, false)
-			send_msg(replyTo, id + " was kicked", ok_cb, false)
+			replyTo.del_user("user#" + id)
+			replyTo.send_msg(id + " was kicked")
 		vote_running = 0
 
 
@@ -95,8 +95,8 @@ def vote_count(id, end):
 	#Nothing
 
 
-def tprint (tbl, indent):
-	return
+#def tprint (tbl, indent):
+	#return
 	#if not indent:
 	#	indent = 0
 	#for k, v in pairs(tbl):
@@ -124,7 +124,7 @@ def will_respond_to_msg(text):
 	else:
 		return False
 
-def run_command(replyTo, text):
+def run_command(replyTo, text, src):
 	"Runs sudo commands"
 	#Reset variables
 	chatinforesponse = ""
@@ -147,7 +147,7 @@ def run_command(replyTo, text):
 	
 	if words[2] == "kick": #If the !kick command is run
 		if words[3] == nil: #No user specified
-			send_msg(replyTo, "Please specify a user to kick", ok_cb, false)
+			replyTo.send_msg("Please specify a user to kick")
 			return
 		else:
 			user = words[3] # Set the user to kick
@@ -158,27 +158,27 @@ def run_command(replyTo, text):
 		#Is now done in cb_function
 		
 		#Check if sender is admin
-		if perm_check(string.lower(msg.from.username)):
-			chat_del_user(replyTo, "user#" .. id, ok_cb, false) #Kick
+		if perm_check(string.lower(msg.src.username)):
+			replyTo.del_user("user#" .. id) #Kick
 		else:
-			send_msg(replyTo, "You do not have sufficient permissions", ok_cb, false) #Sender doesn't have permission
+			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
 	if words[2] == "votekick": #Votekick for regular users
 		if words[3] == nil: #No user specified
-			send_msg(replyTo, "Please specify a userid to invite", ok_cb, false)
+			replyTo.send_msg("Please specify a userid to invite")
 			return
 		elif words[3] == "yes":
 			if vote_running = 1:
 				numberofvotes_yes = numberofvotes_yes + 1
 				vote_count(id)
 			else:
-				send_msg(replyTo, "The current vote has ended", ok_cb, false)
+				replyTo.send_msg("The current vote has ended")
 		elif words[3] == "no":
 			if vote_running = 1:
 				numberofvotes_no = numberofvotes_no + 1
 				vote_count(id)
 			else:
-				send_msg(replyTo, "The current vote has ended", ok_cb, false)
+				replyTo.send_msg("The current vote has ended")
 		else:
 			id = words[3] #Set the userid to votekick
 		
@@ -186,27 +186,27 @@ def run_command(replyTo, text):
 		t = Timer(180.0, vote_count)
 		t.start() #After 180 seconds, vote_count() will be executed
 		if vote_running = 1:
-			send_msg(replyTo, "The current vote has not ended", ok_cb, false)
+			replyTo.send_msg("The current vote has not ended")
 			return
 		vote_running = 1
 		numberofvotes_yes = 1 #Reset votes
 		numberofvotes_no = 0 #Reset votes
-		send_msg(replyTo, msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3], ok_cb, false)
+		replyTo.send_msg(msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
 		
 		
 		
 	if words[2] == "invite": #If the invite command is run
 		if words[3] == nil: #No user specified
-			send_msg(replyTo, "Please specify a userid to invite", ok_cb, false)
+			replyTo.send_msg("Please specify a userid to invite")
 			return
 		else:
 			id = words[3] # Set the userid to invite
 
 		#Check if sender is admin
 		if perm_check(string.lower(msg.from.username)):
-			chat_add_user(replyTo, "user#" .. id, ok_cb, false) #Invite
+			replyTo.add_user("user#" .. id) #Invite
 		else:
-			send_msg(replyTo, "You do not have sufficient permissions", ok_cb, false) #Sender doesn't have permission
+			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 
 	
 	if words[2] == "list": #If list command is run

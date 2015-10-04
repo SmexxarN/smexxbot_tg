@@ -53,7 +53,7 @@ def on_msg_receive(msg):
 				return
 		for i in module_list:
 			if globals()[i].will_respond_to_msg(msg.text): #Check if module will respond to this msg
-					globals()[i].run_command(replyTo, msg.text) #Run the main command of that module
+					globals()[i].run_command(replyTo, msg.text, msg.src) #Run the main command of that module
 			
 def on_user_update(peer, what_changed):
 	"Updated info about user. peer is a tgl.Peer object representing the user, and what_changed is array of strings."
