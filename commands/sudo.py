@@ -213,6 +213,3 @@ def run_command(replyTo, text, src):
 		#chat_info("chat#25231397", cb_function, false)
 		sendlist = true
 		chat_info(replyTo, cb_function, false)
-
-
-return module
