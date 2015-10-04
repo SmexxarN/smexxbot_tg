@@ -168,13 +168,13 @@ def run_command(replyTo, text, src):
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		elif words[3] == "yes":
-			if vote_running = 1:
+			if vote_running == 1:
 				numberofvotes_yes = numberofvotes_yes + 1
 				vote_count(id)
 			else:
 				replyTo.send_msg("The current vote has ended")
 		elif words[3] == "no":
-			if vote_running = 1:
+			if vote_running == 1:
 				numberofvotes_no = numberofvotes_no + 1
 				vote_count(id)
 			else:
@@ -185,7 +185,7 @@ def run_command(replyTo, text, src):
 		#Run the actual command
 		t = Timer(180.0, vote_count)
 		t.start() #After 180 seconds, vote_count() will be executed
-		if vote_running = 1:
+		if vote_running == 1:
 			replyTo.send_msg("The current vote has not ended")
 			return
 		vote_running = 1
