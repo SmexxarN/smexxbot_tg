@@ -77,7 +77,7 @@ def perm_check(username):
 			return true
 
 			
-def vote_count(id, end):
+
 def vote_count(id, end):
 	send_msg(replyTo, "Current vote count:\nYes: " + global numberofvotes_yes + "\nNo: " + global numberofvotes_no, ok_cb, false)
 	if end == true:
