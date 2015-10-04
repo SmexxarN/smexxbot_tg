@@ -5,8 +5,8 @@ long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKick
 import time
 import threading
 
-numberofvotes_yes = 0
-numberofvotes_no = 0
+numberofvotesyes = 0
+numberofvotesno = 0
 chatinforesponse = ""
 replyTo2 = nil
 listofstarts = {}
@@ -79,7 +79,7 @@ def perm_check(username):
 			
 
 def vote_count(id, end):
-	send_msg(replyTo, "Current vote count:\nYes: " + global numberofvotes_yes + "\nNo: " + global numberofvotes_no, ok_cb, false)
+	send_msg(replyTo, "Current vote count:\nYes: " + global numberofvotesyes + "\nNo: " + global numberofvotesno, ok_cb, false)
 	if end == true:
 		if numberofvotes_yes >= 3:
 			chat_del_user(replyTo, "user#" + id, ok_cb, false)
