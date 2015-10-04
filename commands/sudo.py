@@ -96,13 +96,14 @@ def cb_function(extra, success, result):
 		else:
 			userinfo(chatinforesponse)
 
-def module.will_respond_to_msg(msg):
+def will_respond_to_msg(text):
 	words = {}
 	for word in string.gmatch(msg.text, "%S+"):
 		words[len(words) + 1] = string.lower(word);
 	return string.lower(words[1]) == "!sudo"
 
-def module.on_msg_receive(msg, replyTo):
+def run_command(replyTo, text):
+	"Returns pong"
 	#Reset variables
 	chatinforesponse = ""
 	replyTo2 = replyTo
