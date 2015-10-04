@@ -70,8 +70,7 @@ def perm_check(username):
 			return true
 
 
-def module.init():
-	print "Module init"
+#def module.init():
 	#Nothing
 
 
