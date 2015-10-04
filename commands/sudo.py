@@ -8,7 +8,7 @@ import threading
 numberofvotes_yes = 0
 numberofvotes_no = 0
 chatinforesponse = ""
-replyTo2 = nil
+replyTo2 = None
 listofstarts = {}
 userinfostring = ""
 user = ""
@@ -146,7 +146,7 @@ def run_command(replyTo, text, src):
 	words = text.split
 	
 	if words[2] == "kick": #If the !kick command is run
-		if words[3] == nil: #No user specified
+		if words[3] == None: #No user specified
 			replyTo.send_msg("Please specify a user to kick")
 			return
 		else:
@@ -164,7 +164,7 @@ def run_command(replyTo, text, src):
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
 	if words[2] == "votekick": #Votekick for regular users
-		if words[3] == nil: #No user specified
+		if words[3] == None: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		elif words[3] == "yes":
@@ -196,7 +196,7 @@ def run_command(replyTo, text, src):
 		
 		
 	if words[2] == "invite": #If the invite command is run
-		if words[3] == nil: #No user specified
+		if words[3] == None: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		else:
