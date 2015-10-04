@@ -78,7 +78,9 @@ def perm_check(username):
 
 			
 def vote_count(id, end):
-	send_msg(replyTo, "Current vote count: \nYes: " + global numberofvotes_yes + "\nNo: " + global numberofvotes_no", ok_cb, false)
+	numberofvotes_yes = global numberofvotes_yes
+	numberofvotes_no = global numberofvotes-no
+	send_msg(replyTo, "Current vote count:\nYes: " + global numberofvotes_yes + "\nNo: " + global numberofvotes_no, ok_cb, false)
 	if end == true:
 		if numberofvotes_yes >= 3:
 			chat_del_user(replyTo, "user#" + id, ok_cb, false)
