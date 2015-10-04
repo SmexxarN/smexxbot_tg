@@ -12,7 +12,7 @@ replyTo2 = None
 listofstarts = {}
 userinfostring = ""
 user = ""
-sendlist = false
+sendlist = False
 vote_running = 0
 
 
@@ -131,7 +131,7 @@ def run_command(replyTo, text, src):
 	replyTo2 = replyTo
 	listofstarts = {}
 	userinfostring = ""
-	sendlist = false
+	sendlist = False
 	user = ""
 	phone = ""
 	print_name = ""
