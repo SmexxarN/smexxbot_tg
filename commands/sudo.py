@@ -191,7 +191,7 @@ def run_command(replyTo, text, src):
 		vote_running = 1
 		numberofvotes_yes = 1 #Reset votes
 		numberofvotes_no = 0 #Reset votes
-		replyTo.send_msg(msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
+		replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
 		
 		
 		
@@ -203,7 +203,7 @@ def run_command(replyTo, text, src):
 			id = words[3] # Set the userid to invite
 
 		#Check if sender is admin
-		if perm_check(string.lower(msg.from.username)):
+		if perm_check(string.lower(msg.src.username)):
 			replyTo.add_user("user#" + id) #Invite
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
