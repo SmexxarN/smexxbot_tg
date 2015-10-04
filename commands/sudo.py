@@ -65,7 +65,7 @@ def perm_check(username):
 
 	admins = {"smexxarn", "dennip", "mowsh", "brunado"}
 	
-	for i in range(0, len(admins):
+	for i in range(0, len(admins)):
 		if admins[i] == username:
 			return true
 
