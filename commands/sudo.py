@@ -18,45 +18,45 @@ username = ""
 
 
 def userinfo(info, start):
-	if not start:
-		start = 1
-	if start > string.len(info):
-		return
-	else:
-		a = info:find("%d:", start)
-		if a ~= nil:
-			table.insert(listofstarts, a)
-			userinfo(chatinforesponse, a+1)
-		else:
-			userinfo2()
+	#if not start:
+	#	start = 1
+	#if start > string.len(info):
+	#	return
+	#else:
+	#	a = info:find("%d:", start)
+	#	if a ~= nil:
+	#		table.insert(listofstarts, a)
+	#		userinfo(chatinforesponse, a+1)
+	#	else:
+	#		userinfo2()
 
 
 
 def userinfo2():
-	subuserstring = ""
-	last = nil
-	words = {}
-	for _, value in pairs(listofstarts):
-		if last ~= nil:
-			subuserstring = chatinforesponse:sub(last, value)
-			words = {}
-			for word in string.gmatch(subuserstring, "%S+"):
-				words[len(words) + 1] = string.lower(word)
-			for i=1, len(words) do
-				if words[i] == "phone:":
-					phone = word[i+1]
-				elif words[i] == "print_name:":
-					print_name = word[i+1]
-				elif words[i] == "id:":
-					id = word[i+1]
-				elif words[i] == "first_name:":
-					first_name = word[i+1]
-				elif words[i] == "username:":
-					username = word[i+1]
-				if words[i] == user:
-					print("Found the user") #Debug message
-					return
-		last = value
+	#subuserstring = ""
+	#last = nil
+	#words = {}
+	#for _, value in pairs(listofstarts):
+	#	if last ~= nil:
+	#		subuserstring = chatinforesponse:sub(last, value)
+	#		words = {}
+	#		for word in string.gmatch(subuserstring, "%S+"):
+	#			words[len(words) + 1] = string.lower(word)
+	#		for i=1, len(words) do
+	#			if words[i] == "phone:":
+	#				phone = word[i+1]
+	#			elif words[i] == "print_name:":
+	#				print_name = word[i+1]
+	#			elif words[i] == "id:":
+	#				id = word[i+1]
+	#			elif words[i] == "first_name:":
+	#				first_name = word[i+1]
+	#			elif words[i] == "username:":
+	#				username = word[i+1]
+	#			if words[i] == user:
+	#				print("Found the user") #Debug message
+	#				return
+	#	last = value
 
 
 def perm_check(username):
@@ -73,16 +73,16 @@ def module.init():
 
 
 def tprint (tbl, indent):
-	if not indent:
-		indent = 0
-	for k, v in pairs(tbl):
-		formatting = string.rep("  ", indent) .. k .. ": "
-		if type(v) == "table":
-			chatinforesponse = chatinforesponse .. formatting .. "\n"
-			tprint(v, indent+1)
-		else:
-			chatinforesponse = chatinforesponse .. formatting .. tostring(v) .. "\n"
-	print("tprint")#Debug
+	#if not indent:
+	#	indent = 0
+	#for k, v in pairs(tbl):
+	#	formatting = string.rep("  ", indent) .. k .. ": "
+	#	if type(v) == "table":
+	#		chatinforesponse = chatinforesponse .. formatting .. "\n"
+	#		tprint(v, indent+1)
+	#	else:
+	#		chatinforesponse = chatinforesponse .. formatting .. tostring(v) .. "\n"
+	#print("tprint")#Debug
 
 
 def cb_function(extra, success, result):
@@ -93,13 +93,13 @@ def cb_function(extra, success, result):
 		else:
 			userinfo(chatinforesponse)
 
-function module.will_respond_to_msg(msg)
+def module.will_respond_to_msg(msg):
 	words = {}
 	for word in string.gmatch(msg.text, "%S+"):
 		words[len(words) + 1] = string.lower(word);
 	return string.lower(words[1]) == "!sudo"
 
-function module.on_msg_receive(msg, replyTo)
+def module.on_msg_receive(msg, replyTo):
 	#Reset variables
 	chatinforesponse = ""
 	replyTo2 = replyTo
