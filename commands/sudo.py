@@ -18,6 +18,7 @@ username = ""
 
 
 def userinfo(info, start):
+	return
 	#if not start:
 	#	start = 1
 	#if start > string.len(info):
@@ -33,6 +34,7 @@ def userinfo(info, start):
 
 
 def userinfo2():
+	return
 	#subuserstring = ""
 	#last = nil
 	#words = {}
@@ -69,10 +71,12 @@ def perm_check(username):
 
 
 def module.init():
+	print "Module init"
 	#Nothing
 
 
 def tprint (tbl, indent):
+	return
 	#if not indent:
 	#	indent = 0
 	#for k, v in pairs(tbl):
