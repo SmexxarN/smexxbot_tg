@@ -2,12 +2,19 @@ command_name = "Sudo"
 short_description = "Sudo Command"
 long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKicks the user from the group \n\n!sudo invite <username> \nInvites the user to the group \n\n!sudo list \nLists userinfo of everyone in the group "
 
+import time
+import threading
+
+numberofvotes_yes = 0
+numberofvotes_no = 0
 chatinforesponse = ""
 replyTo2 = nil
 listofstarts = {}
 userinfostring = ""
 user = ""
 sendlist = false
+vote_running = 0
+
 
 #Userinfo2
 phone = ""
@@ -69,6 +76,16 @@ def perm_check(username):
 		if admins[i] == username:
 			return true
 
+			
+def vote_count(id, end):
+	send_msg(replyTo, "Current vote count: \nYes: " + global numberofvotes_yes + "\nNo: " + global numberofvotes_no", ok_cb, false)
+	if end == true:
+		if numberofvotes_yes >= 3:
+			chat_del_user(replyTo, "user#" + id, ok_cb, false)
+			send_msg(replyTo, id + " was kicked", ok_cb, false)
+		global vote_running = 0
+
+
 
 #def module.init():
 	#Nothing
@@ -103,7 +120,7 @@ def will_respond_to_msg(text):
 	return string.lower(words[1]) == "!sudo"
 
 def run_command(replyTo, text):
-	"Returns pong"
+	"Runs sudo commands"
 	#Reset variables
 	chatinforesponse = ""
 	replyTo2 = replyTo
@@ -145,8 +162,31 @@ def run_command(replyTo, text):
 		if words[3] == nil: #No user specified
 			send_msg(replyTo, "Please specify a userid to invite", ok_cb, false)
 			return
+		elif words[3] == "yes":
+			if global vote_running = 1:
+				global numberofvotes_yes = global numberofvotes_yes + 1
+				vote_count(id)
+			else:
+				send_msg(replyTo, "The current vote has ended", ok_cb, false)
+		elif words[3] == "no":
+			if global vote_running = 1:
+				global numberofvotes_no = global numberofvotes_no + 1
+				vote_count(id)
+			else:
+				send_msg(replyTo, "The current vote has ended", ok_cb, false)
 		else:
 			id = words[3] #Set the userid to votekick
+		
+		#Run the actual command
+		t = Timer(180.0, vote_count)
+		t.start() #After 180 seconds, vote_count() will be executed
+		if global vote_running = 1:
+			send_msg(replyTo, "The current vote has not ended", ok_cb, false)
+			return
+		global numberofvotes_yes = 1 #Reset votes
+		global numberofvotes_no = 0 #Reset votes
+		send_msg(replyTo, msg.from.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3], ok_cb, false)
+		
 		
 		
 	if words[2] == "invite": #If the invite command is run
