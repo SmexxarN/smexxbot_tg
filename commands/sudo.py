@@ -142,7 +142,7 @@ def run_command(replyTo, text, src):
 	global numberofvotes_no
 	global vote_running
 	
-	words = text.split
+	words = text.split()
 	
 	if words[1] == "kick": #If the !kick command is run
 		if words[2] == None: #No user specified
