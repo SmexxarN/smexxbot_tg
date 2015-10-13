@@ -27,7 +27,7 @@ def userinfo(info, start):
 	return
 	#if not start:
 	#	start = 1
-	#if start > string.len(info):
+	#if start > len(info):
 	#	return
 	#else:
 	#	a = info:find("%d:", start)
@@ -144,8 +144,8 @@ def run_command(replyTo, text, src):
 	
 	words = text.split
 	
-	if words[2] == "kick": #If the !kick command is run
-		if words[3] == None: #No user specified
+	if words[1] == "kick": #If the !kick command is run
+		if words[2] == None: #No user specified
 			replyTo.send_msg("Please specify a user to kick")
 			return
 		else:
@@ -162,24 +162,24 @@ def run_command(replyTo, text, src):
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
-	if words[2] == "votekick": #Votekick for regular users
-		if words[3] == None: #No user specified
+	if words[1] == "votekick": #Votekick for regular users
+		if words[2] == None: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
-		elif words[3] == "yes":
+		elif words[2] == "yes":
 			if vote_running == 1:
 				numberofvotes_yes = numberofvotes_yes + 1
 				vote_count(id)
 			else:
 				replyTo.send_msg("The current vote has ended")
-		elif words[3] == "no":
+		elif words[2] == "no":
 			if vote_running == 1:
 				numberofvotes_no = numberofvotes_no + 1
 				vote_count(id)
 			else:
 				replyTo.send_msg("The current vote has ended")
 		else:
-			id = words[3] #Set the userid to votekick
+			id = words[2] #Set the userid to votekick
 		
 		#Run the actual command
 		t = Timer(180.0, vote_count)
@@ -194,12 +194,12 @@ def run_command(replyTo, text, src):
 		
 		
 		
-	if words[2] == "invite": #If the invite command is run
-		if words[3] == None: #No user specified
+	if words[1] == "invite": #If the invite command is run
+		if words[2] == None: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		else:
-			id = words[3] # Set the userid to invite
+			id = words[2] # Set the userid to invite
 
 		#Check if sender is admin
 		if perm_check(msg.src.username.lower()):
@@ -208,7 +208,8 @@ def run_command(replyTo, text, src):
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 
 	
-	if words[2] == "list": #If list command is run
+	if words[1] == "list": #If list command is run
 		#chat_info("chat#25231397", cb_function, false)
 		sendlist = true
 		chat_info(replyTo, cb_function, false)
+	
