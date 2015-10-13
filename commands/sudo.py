@@ -25,46 +25,10 @@ username = ""
 
 def userinfo(info, start):
 	return
-	#if not start:
-	#	start = 1
-	#if start > string.len(info):
-	#	return
-	#else:
-	#	a = info:find("%d:", start)
-	#	if a ~= nil:
-	#		table.insert(listofstarts, a)
-	#		userinfo(chatinforesponse, a+1)
-	#	else:
-	#		userinfo2()
-
-
+	
 
 def userinfo2():
 	return
-	#subuserstring = ""
-	#last = nil
-	#words = {}
-	#for _, value in pairs(listofstarts):
-	#	if last ~= nil:
-	#		subuserstring = chatinforesponse:sub(last, value)
-	#		words = {}
-	#		for word in string.gmatch(subuserstring, "%S+"):
-	#			words[len(words) + 1] = word.lower()
-	#		for i=1, len(words) do
-	#			if words[i] == "phone:":
-	#				phone = word[i+1]
-	#			elif words[i] == "print_name:":
-	#				print_name = word[i+1]
-	#			elif words[i] == "id:":
-	#				id = word[i+1]
-	#			elif words[i] == "first_name:":
-	#				first_name = word[i+1]
-	#			elif words[i] == "username:":
-	#				username = word[i+1]
-	#			if words[i] == user:
-	#				print("Found the user") #Debug message
-	#				return
-	#	last = value
 
 
 def perm_check(username):
@@ -88,24 +52,6 @@ def vote_count(id, end):
 			replyTo.send_msg(id + " was kicked")
 		vote_running = 0
 
-
-
-#def module.init():
-	#Nothing
-
-
-#def tprint (tbl, indent):
-	#return
-	#if not indent:
-	#	indent = 0
-	#for k, v in pairs(tbl):
-	#	formatting = string.rep("  ", indent) .. k .. ": "
-	#	if type(v) == "table":
-	#		chatinforesponse = chatinforesponse .. formatting .. "\n"
-	#		tprint(v, indent+1)
-	#	else:
-	#		chatinforesponse = chatinforesponse .. formatting .. tostring(v) .. "\n"
-	#print("tprint")#Debug
 
 
 def cb_function(extra, success, result):
@@ -143,25 +89,6 @@ def run_command(replyTo, text, src):
 	global vote_running
 	
 	words = text.split
-	
-	if words[2] == "kick": #If the !kick command is run
-		if words[3] == None: #No user specified
-			replyTo.send_msg("Please specify a user to kick")
-			return
-		else:
-			user = words[3] # Set the user to kick
-		
-		chat_info(replyTo, cb_function, false)#Lookup all users
-		#wait(5)
-		#userinfo(chatinforesponse) #Run function using the string with all users information
-		#Is now done in cb_function
-		
-		#Check if sender is admin
-		if perm_check(msg.src.username.lower()):
-			replyTo.del_user("user#" + id) #Kick
-		else:
-			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
-		
 	
 		
 		
