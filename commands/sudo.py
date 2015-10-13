@@ -6,10 +6,7 @@ long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKick
 
 def will_respond_to_msg(text):
 	words = text.split
-	if words[0].lower() == "!sudo":
-		return True
-	else:
-		return False
+	return True
 
 def run_command(replyTo, text, src):
 	"Runs sudo commands"
