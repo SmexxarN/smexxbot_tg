@@ -72,22 +72,7 @@ def will_respond_to_msg(text):
 def run_command(replyTo, text, src):
 	"Runs sudo commands"
 	#Reset variables
-	chatinforesponse = ""
-	replyTo2 = replyTo
-	listofstarts = {}
-	userinfostring = ""
-	sendlist = False
-	user = ""
-	phone = ""
-	print_name = ""
-	id = ""
-	first_name = ""
 	username = ""
-	
-	global numberofvotes_yes
-	global numberofvotes_no
-	global vote_running
-	
-	words = text.split
+
 	
 	
