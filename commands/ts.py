@@ -13,7 +13,7 @@ def will_respond_to_msg(text):
 	else:
 		return False
 
-def run_command(replyTo, text):
+def run_command(replyTo, text, src):
 	"Returns a list of people on the teamspeak server"
 	
 	with open('config.json') as data_file:    #Retrieve username and password
