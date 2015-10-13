@@ -118,10 +118,7 @@ def cb_function(extra, success, result):
 
 def will_respond_to_msg(text):
 	words = text.split
-	if words[0].lower() == "!sudo":
-		return True
-	else:
-		return False
+	return True
 
 def run_command(replyTo, text, src):
 	"Runs sudo commands"
