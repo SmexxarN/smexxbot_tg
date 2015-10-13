@@ -162,36 +162,7 @@ def run_command(replyTo, text, src):
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
-	if words[2] == "votekick": #Votekick for regular users
-		if words[3] == None: #No user specified
-			replyTo.send_msg("Please specify a userid to invite")
-			return
-		elif words[3] == "yes":
-			if vote_running == 1:
-				numberofvotes_yes = numberofvotes_yes + 1
-				vote_count(id)
-			else:
-				replyTo.send_msg("The current vote has ended")
-		elif words[3] == "no":
-			if vote_running == 1:
-				numberofvotes_no = numberofvotes_no + 1
-				vote_count(id)
-			else:
-				replyTo.send_msg("The current vote has ended")
-		else:
-			id = words[3] #Set the userid to votekick
-		
-		#Run the actual command
-		t = Timer(180.0, vote_count)
-		t.start() #After 180 seconds, vote_count() will be executed
-		if vote_running == 1:
-			replyTo.send_msg("The current vote has not ended")
-			return
-		vote_running = 1
-		numberofvotes_yes = 1 #Reset votes
-		numberofvotes_no = 0 #Reset votes
-		replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
-		
+	
 		
 		
 	if words[2] == "invite": #If the invite command is run
