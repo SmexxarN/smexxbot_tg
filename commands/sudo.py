@@ -2,7 +2,6 @@ command_name = "Sudo"
 short_description = "Sudo Command"
 long_description = "Sudo Command - v1.1\n\nUsage: \n!sudo kick <username> \nKicks the user from the group \n\n!sudo invite <username> \nInvites the user to the group \n\n!sudo list \nLists userinfo of everyone in the group "
 
-import time
 import threading
 
 numberofvotes_yes = 0
@@ -183,15 +182,15 @@ def run_command(replyTo, text, src):
 			id = words[3] #Set the userid to votekick
 		
 		#Run the actual command
-		#t = Timer(180.0, vote_count)
-		#t.start() #After 180 seconds, vote_count() will be executed
-		#if vote_running == 1:
-		#	replyTo.send_msg("The current vote has not ended")
-		#	return
-		#vote_running = 1
-		#numberofvotes_yes = 1 #Reset votes
-		#numberofvotes_no = 0 #Reset votes
-		#replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
+		t = Timer(180.0, vote_count)
+		t.start() #After 180 seconds, vote_count() will be executed
+		if vote_running == 1:
+			replyTo.send_msg("The current vote has not ended")
+			return
+		vote_running = 1
+		numberofvotes_yes = 1 #Reset votes
+		numberofvotes_no = 0 #Reset votes
+		replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
 		
 		
 		
@@ -203,7 +202,7 @@ def run_command(replyTo, text, src):
 			id = words[3] # Set the userid to invite
 
 		#Check if sender is admin
-		if perm_check(string.lower(msg.src.username)):
+		if perm_check(msg.src.username.lower()):
 			replyTo.add_user("user#" + id) #Invite
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
