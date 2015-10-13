@@ -149,7 +149,7 @@ def run_command(replyTo, text, src):
 			replyTo.send_msg("Please specify a user to kick")
 			return
 		else:
-			user = words[3] # Set the user to kick
+			user = words[2] # Set the user to kick
 		
 		chat_info(replyTo, cb_function, false)#Lookup all users
 		#wait(5)
