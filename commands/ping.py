@@ -9,6 +9,6 @@ def will_respond_to_msg(text):
 	else:
 		return False
 
-def run_command(replyTo, text):
+def run_command(replyTo, text, src):
 	"Returns pong"
 	replyTo.send_msg("Pong")
