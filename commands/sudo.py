@@ -49,7 +49,7 @@ def userinfo2():
 	#		subuserstring = chatinforesponse:sub(last, value)
 	#		words = {}
 	#		for word in string.gmatch(subuserstring, "%S+"):
-	#			words[len(words) + 1] = string.lower(word)
+	#			words[len(words) + 1] = word.lower()
 	#		for i=1, len(words) do
 	#			if words[i] == "phone:":
 	#				phone = word[i+1]
@@ -157,7 +157,7 @@ def run_command(replyTo, text, src):
 		#Is now done in cb_function
 		
 		#Check if sender is admin
-		if perm_check(string.lower(msg.src.username)):
+		if perm_check(msg.src.username.lower()):
 			replyTo.del_user("user#" + id) #Kick
 		else:
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
