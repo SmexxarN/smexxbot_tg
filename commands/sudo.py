@@ -183,15 +183,15 @@ def run_command(replyTo, text, src):
 			id = words[3] #Set the userid to votekick
 		
 		#Run the actual command
-		t = threading.Timer(180.0, vote_count)
-		t.start() #After 180 seconds, vote_count() will be executed
-		if vote_running == 1:
-			replyTo.send_msg("The current vote has not ended")
-			return
-		vote_running = 1
-		numberofvotes_yes = 1 #Reset votes
-		numberofvotes_no = 0 #Reset votes
-		replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
+		#t = Timer(180.0, vote_count)
+		#t.start() #After 180 seconds, vote_count() will be executed
+		#if vote_running == 1:
+		#	replyTo.send_msg("The current vote has not ended")
+		#	return
+		#vote_running = 1
+		#numberofvotes_yes = 1 #Reset votes
+		#numberofvotes_no = 0 #Reset votes
+		#replyTo.send_msg(msg.src.username + " has initiated a vote to kick \nReply with '!sudo votekick yes' to vote in favor of the kick \nReply with '!sudo votekick no' to vote against the kick" + words[3])
 		
 		
 		
