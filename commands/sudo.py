@@ -183,7 +183,7 @@ def run_command(replyTo, text, src):
 			id = words[3] #Set the userid to votekick
 		
 		#Run the actual command
-		t = Timer(180.0, vote_count)
+		t = threading.Timer(180.0, vote_count)
 		t.start() #After 180 seconds, vote_count() will be executed
 		if vote_running == 1:
 			replyTo.send_msg("The current vote has not ended")
