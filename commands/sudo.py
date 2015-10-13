@@ -117,8 +117,11 @@ def cb_function(extra, success, result):
 			userinfo(chatinforesponse)
 
 def will_respond_to_msg(text):
-	words = text.split
-	return True
+	words = text.split()
+	if words[0].lower() == "!sudo":
+		return True
+	else:
+		return False
 
 def run_command(replyTo, text, src):
 	"Runs sudo commands"
