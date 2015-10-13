@@ -90,23 +90,4 @@ def run_command(replyTo, text, src):
 	
 	words = text.split
 	
-		
-		
-	if words[2] == "invite": #If the invite command is run
-		if words[3] == None: #No user specified
-			replyTo.send_msg("Please specify a userid to invite")
-			return
-		else:
-			id = words[3] # Set the userid to invite
-
-		#Check if sender is admin
-		if perm_check(msg.src.username.lower()):
-			replyTo.add_user("user#" + id) #Invite
-		else:
-			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
-
 	
-	if words[2] == "list": #If list command is run
-		#chat_info("chat#25231397", cb_function, false)
-		sendlist = true
-		chat_info(replyTo, cb_function, false)
