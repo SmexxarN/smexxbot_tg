@@ -145,7 +145,7 @@ def run_command(replyTo, text, src):
 	words = text.split()
 	
 	if words[1] == "kick": #If the !kick command is run
-		if words[2] == None: #No user specified
+		if len(words) < 3: #No user specified
 			replyTo.send_msg("Please specify a user to kick")
 			return
 		else:
@@ -163,7 +163,7 @@ def run_command(replyTo, text, src):
 			replyTo.send_msg("You do not have sufficient permissions") #Sender doesn't have permission
 		
 	if words[1] == "votekick": #Votekick for regular users
-		if words[2] == None: #No user specified
+		if len(words) < 3: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		elif words[2] == "yes":
@@ -195,7 +195,7 @@ def run_command(replyTo, text, src):
 		
 		
 	if words[1] == "invite": #If the invite command is run
-		if words[2] == None: #No user specified
+		if len(words) < 3: #No user specified
 			replyTo.send_msg("Please specify a userid to invite")
 			return
 		else:
